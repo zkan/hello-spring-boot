@@ -1,9 +1,11 @@
 package team.odds.conferencedemo.models;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity(name = "speakers")
 public class Speaker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

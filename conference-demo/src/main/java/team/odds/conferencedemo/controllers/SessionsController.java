@@ -26,7 +26,7 @@ public class SessionsController {
     }
 
     // by default, spring boot returns 200
-    @GetMapping
+    @PostMapping
     // we need to override the response code, so it returns 201
     @ResponseStatus(HttpStatus.CREATED)
     public Session create(@RequestBody final Session session) {

@@ -1,5 +1,6 @@
 package team.odds.conferencedemo.controllers;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +32,18 @@ public class SessionsController {
     @ResponseStatus(HttpStatus.CREATED)
     public Session create(@RequestBody final Session session) {
         return sessionRepository.saveAndFlush(session);
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id) {
+        // here we have to deal with cascades by ourselves
+        sessionRepository.deleteById(id);
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public Session update(@PathVariable Long id, @RequestBody Session session) {
+        Session existingSession = sessionRepository.getOne(id);
+        BeanUtils.copyProperties(session, existingSession, "session_id");
+        return sessionRepository.saveAndFlush(existingSession);
     }
 }

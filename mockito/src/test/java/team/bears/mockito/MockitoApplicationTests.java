@@ -1,4 +1,4 @@
-package team.odds.mockito;
+package team.bears.mockito;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.6.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'com.adarshr.test-logger' version '2.0.0'
 }
 
 group = 'team.odds'
@@ -25,6 +26,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
 }
 
 test {

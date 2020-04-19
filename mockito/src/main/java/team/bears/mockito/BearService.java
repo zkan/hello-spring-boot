@@ -1,12 +1,13 @@
 package team.bears.mockito;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class BearService {
-    @Autowired
-    Bear bear;
+    private Bear bear;
+
+    public BearService(Bear bear) {
+        this.bear = bear;
+    }
 
     public String say() {
-        return bear.roar();
+        return this.bear.roar();
     }
 }

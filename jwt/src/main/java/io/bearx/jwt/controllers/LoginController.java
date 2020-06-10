@@ -19,11 +19,23 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RequestMapping("/login")
 public class LoginController {
 
+    static final long EXPIRATION_TIME = 1000 * 30; // 30 seconds timeout
+
     @PostMapping
     public ResponseEntity<ApiToken> login(@RequestBody Client client) {
+        System.out.println(client.getClientId());
+        System.out.println(client.getClientName());
+        System.out.println(client.getPasswordTxt());
+
         return new ResponseEntity<>(
-                new ApiToken(Jwts.builder().setSubject(client.getClientName()).claim("roles", "user")
-                        .setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "123#&*zcvAWEE999").compact()),
+                new ApiToken(Jwts.builder()
+                        .setSubject(client.getClientName())
+                        .claim("scopes", "admins")
+                        .claim("companyId", 99)
+                        .setIssuedAt(new Date())
+                        .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                        .signWith(SignatureAlgorithm.HS256, "123#&*zcvAWEE999")
+                        .compact()),
                 HttpStatus.OK);
     }
 }

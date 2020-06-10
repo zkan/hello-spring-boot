@@ -1,1 +1,1 @@
-Credit: https://dzone.com/articles/spring-boot-security-json-web-tokenjwt-hello-world
+Credit: https://github.com/SimpleProgramming/springboot-security-simple-jwt
